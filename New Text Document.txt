@@ -1,0 +1,59 @@
+/********************************************
+Kristers Laganovskis, kl24033
+A10. Doti divi naturāli skaitļi m un n. Noteikt skaitļa m pirmo n ciparu summu. Skaitļa dalīšana ciparos jāveic skaitliski.
+Programma izveidota: 14.09.2024.
+********************************************/
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int m, n;
+    string choice = "1";
+
+    while (choice == "1") {
+        cout << "Ievadi naturalu skaitli m: ";
+        cin >> m;
+
+        cout << "Ievadi otru naturalu skaitli n: ";
+        cin >> n;
+
+        if (n <= 0 || m <= 0) {
+            cout << "Nevar but negativs skaitlis vai 0!" << endl;
+            cout << "Ievadi atkartoti!" << endl;
+        } else {
+
+
+            int digit;
+            int sum = 0;
+            int count;
+
+			int number_of_digits = to_string(m).length();
+
+			int digits_arry[number_of_digits] = {};
+
+            while (m > 0) {
+				digit = m % 10;  // Get the current last digit
+				m /= 10;         // Remove the last digit from m
+				digits_arry[number_of_digits - count - 1] = digit;  // Insert the digit in reverse order
+				count++;
+			}
+
+			// Sum the first 'n' digits
+			sum = 0;  // Reset sum to 0
+			for (int i = 0; i < n && i < number_of_digits; i++) {
+				sum += digits_arry[i];  // Add the digit to the sum
+			}
+
+			cout << "Sum of the first " << n << " digits: " << sum << endl;
+
+        }
+
+        cout << "Vai turpināt (1) vai beigt (0)?" << endl;
+        cin >> choice;
+    }
+
+    cout << "Programma beigusies!" << endl;
+
+    return 0;
+}
