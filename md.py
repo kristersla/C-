@@ -35,7 +35,5 @@ while True:  # Sāk bezgalīgu ciklu, kas turpināsies līdz tas tiek pārtraukt
 
         again = input("Vai turpināt (1) vai beigt (0)?\n")  # Ievadam '1' (turpināt) vai '0' (beigt).
         if again != "1":  # Ja ievadītā atbilde nav '1', cikls tiek pārtraukts ar 'break' komandu.
+            print("Programma paveica darbu!")
             break 
-
-
-
