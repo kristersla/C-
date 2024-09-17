@@ -20,7 +20,7 @@ while True:  # Sāk bezgalīgu ciklu, kas turpināsies līdz tas tiek pārtraukt
         # Šajā ciklā mēs pārveidojam skaitli 'm' par atsevišķu ciparu sarakstu.
         while cikla_m > 0:
             skaitlis_list.append(cikla_m % 10)  # Iegūstam pēdējo ciparu no 'cikla_m' vērtības un tad to pievieno sarakstam.
-            cikla_m = cikla_m // 10  # Tiek noņemts pēdējais cipars no 'cikla_m'.
+            cikla_m = cikla_m // 10  # Izdalot ar 10 tiek noapaļots cikla_m līdz tuvākajam veselajam skaitlim.
 
         skaitlis_list = skaitlis_list[::-1]  # Tiek apgriests ciparu sarakstu, lai tas būtu pareizā secībā, jo skaitļi tika iegūti no beigām uz sākumu.
         skaitlu_virknes_garums = len(skaitlis_list)  # Tiek iegūts saraksta garums, kas kalpos tālāk 'if' funkcijā, lai notiektu vai ievadītias 'n' skaitlis būs derīgs.
