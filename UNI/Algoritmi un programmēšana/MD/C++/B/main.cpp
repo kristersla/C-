@@ -22,7 +22,7 @@ void simetrisks(int skaitlis){
         skaitlis = skaitlis / 10;
     }while (skaitlis > 0);
 
-    // Ja sākotnējais skaitlis ir vienāds ar apgriezto, tas ir simetrisks un izvada lieotājam paziņojumu.
+    // Ja sākotnējais skaitlis ir vienāds ar apgriezto, tas ir simetrisks un izvada lietotājam paziņojumu.
     if (kapinats_skaitlis == atmuguriski) {
         cout<<"Simetrisks skaitlis: "<<kapinats_skaitlis<<endl;
     }
@@ -30,29 +30,35 @@ void simetrisks(int skaitlis){
 
 int main(){
 
-	int ievade = 1;
+    int ievade = 1;
 
-	do{
-		int n, m;
+    do{
+        int n, m;
 
-		// Lietotājam tiek lūgts ievadīt intervāla sākuma un beigu vērtības (n,m)
-		cout<<"Ievadi pirmo skaitli: " <<endl;
-		cin>>n;
-		cout<<"Ievadi otro skaitli: " <<endl;
-		cin>>m;
+        // Lietotājam tiek lūgts ievadīt intervāla sākuma un beigu vērtības (n, m)
+        cout<<"Ievadi pirmo skaitli: " <<endl;
+        cin>>n;
+        cout<<"Ievadi otro skaitli: " <<endl;
+        cin>>m;
 
-		// Cikls, kas kāpina katru skaitli intervālā [n,m], pārbauda katru kāpināto skaitli vai, tas ir simetrisks.
-		for (int skaitlis = n; skaitlis <= m; skaitlis++) {
+        // Ja n un m ir abi 0, tad izvada 0 un nepārbauda intervālu
+        if (n == 0 && m == 0) {
+            cout << 0 << endl;
+        } else {
 
-			int kapinats_skaitlis = skaitlis * skaitlis;
-			simetrisks(kapinats_skaitlis);
-		}
+            // Cikls, kas kāpina katru skaitli intervālā [n, m], pārbauda katru kāpināto skaitli vai, tas ir simetrisks.
+            for (int skaitlis = n; skaitlis <= m; skaitlis++) {
 
-		// Tiek jautāts lietotājam vai vēlas turpināt programmu.
-		cout<<"Ievadi (1), ja velies turpinat, ievadi (0), ja velies beigt programmu: "<<endl;
-		cin>>ievade;
+                int kapinats_skaitlis = skaitlis * skaitlis;
+                simetrisks(kapinats_skaitlis);
+            }
+        }
 
-	}while(ievade==1);
+        // Tiek jautāts lietotājam vai vēlas turpināt programmu.
+        cout<<"Ievadi (1), ja velies turpinat, ievadi (0), ja velies beigt programmu: "<<endl;
+        cin>>ievade;
 
-	return 0;
+    }while(ievade==1);
+
+    return 0;
 }
