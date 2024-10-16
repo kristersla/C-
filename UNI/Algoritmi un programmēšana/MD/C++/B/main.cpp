@@ -10,6 +10,9 @@ using namespace std;
 
 // Funkcija, kas pārbauda, vai skaitlis ir simetrisks.
 // Tā veic skaitļa apgriešanu un pārbauda, vai tas ir vienāds ar sākotnējo skaitli.
+/*******************************************
+void simetrisks(int skaitlis) - funkcija atgriež kā rezultātu ar kāpinātu simetrisku skaitli.
+*******************************************/
 void simetrisks(int skaitlis){
 
     int kapinats_skaitlis = skaitlis;
