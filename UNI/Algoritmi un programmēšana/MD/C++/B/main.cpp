@@ -5,63 +5,73 @@ Skaitļu dalīšana ciparos jāveic skaitliski. Risinājumā izmantot funkciju, 
 simetrisks (Piemēram, skaitlim 2341 simetriskais skaitlis ir 1432).
 Programma izveidota: 30.09.2024.
 *******************************************/
+
 #include <iostream>
 using namespace std;
 
-// Funkcija, kas pārbauda, vai skaitlis ir simetrisks.
-// Tā veic skaitļa apgriešanu un pārbauda, vai tas ir vienāds ar sākotnējo skaitli.
 /*******************************************
-void simetrisks(int skaitlis) - funkcija atgriež kā rezultātu ar kāpinātu simetrisku skaitli.
+bool simetrisks(int skaitlis)
+Funkcija simetrisks(int skaitlis) -
+
+Funkcija pārbauda katru padoto skaitli, kas ir kvadrātā atsvevišķi vai, tas ir vienāds ar šo pašu skaitli, bet apgriestu otrādāk (Z-A).
+Ja, šie skaitļi ir vinādi, tad tiek atgriesta vērtība - true, bet ja nē - false.
 *******************************************/
-void simetrisks(int skaitlis){
 
-    int kapinats_skaitlis = skaitlis;
-    int atmuguriski = 0;
+bool simetrisks(int skaitlis) {
+    int kapinats_skaitlis = skaitlis; // Saglabā sākotnējo skaitli
+    int atmuguriski = 0; // Sākam ar 0, lai veidotu apgriezto skaitli
 
-    // cikls, kas sadala skaitli pa cipariem un apgriež to.
-    do{
+    // while cikls, kas sadala skaitli pa cipariem un pēc tam veido apgriezto skaitli.
+    while (skaitlis > 0) {
         int pedejais_cipars = skaitlis % 10;
         atmuguriski = atmuguriski * 10 + pedejais_cipars;
         skaitlis = skaitlis / 10;
-    }while (skaitlis > 0);
+    }
 
-    // Ja sākotnējais skaitlis ir vienāds ar apgriezto, tas ir simetrisks un izvada lietotājam paziņojumu.
-    if (kapinats_skaitlis == atmuguriski) {
-        cout<<"Simetrisks skaitlis: "<<kapinats_skaitlis<<endl;
+    // Ja sākotnējais skaitlis ir vienāds ar apgriezto, tas ir simetrisks un tiek atgriezta vērtība true.
+    if (kapinats_skaitlis == atmuguriski){
+        return true;
+    }else{
+        return false;
     }
 }
 
-int main(){
-
+int main() {
     int ievade = 1;
 
-    do{
+    // while cikls, kas ļauj programmu darbināt vairākas reizes, līdz lietotājs izvēlas beigt programmu.
+    do {
         int n, m;
 
-        // Lietotājam tiek lūgts ievadīt intervāla sākuma un beigu vērtības (n, m)
-        cout<<"Ievadi pirmo skaitli: " <<endl;
-        cin>>n;
-        cout<<"Ievadi otro skaitli: " <<endl;
-        cin>>m;
+        // Lietotājam tiek lūgts ievadīt intervāla sākuma un beigu vērtības (n, m).
+        cout << "Ievadi pirmo skaitli: " << endl;
+        cin >> n;
+        cout << "Ievadi otro skaitli: " << endl;
+        cin >> m;
 
-        // Ja n un m ir abi 0, tad izvada 0 un nepārbauda intervālu
-        if (n == 0 && m == 0) {
-            cout << 0 << endl;
-        } else {
+        bool atrasts_simetrisks = false; // Mainīgais, lai sekotu līdzi, vai kāds simetrisks skaitlis ir atrasts
 
-            // Cikls, kas kāpina katru skaitli intervālā [n, m], pārbauda katru kāpināto skaitli vai, tas ir simetrisks.
-            for (int skaitlis = n; skaitlis <= m; skaitlis++) {
+        // Cikls, kas kāpina katru skaitli intervālā [n,m], pārbauda katru kāpināto skaitli vai tas ir simetrisks.
+        for (int skaitlis = n; skaitlis <= m; skaitlis++) {
+            int kapinats_skaitlis = skaitlis * skaitlis;
 
-                int kapinats_skaitlis = skaitlis * skaitlis;
-                simetrisks(kapinats_skaitlis);
+            // Funkcija, kas pārbauda simetriju.
+            if (simetrisks(kapinats_skaitlis)==true) {
+                cout << "Simetrisks skaitlis: " << skaitlis << ", kvadrāts: " << kapinats_skaitlis << endl;
+                atrasts_simetrisks = true; // Norāda, ka vismaz viens simetrisks skaitlis ir atrasts
             }
         }
 
-        // Tiek jautāts lietotājam vai vēlas turpināt programmu.
-        cout<<"Ievadi (1), ja velies turpinat, ievadi (0), ja velies beigt programmu: "<<endl;
-        cin>>ievade;
+        // Ja nav atrasts neviens simetrisks skaitlis, izdrukā atbilstošu ziņu.
+        if (!atrasts_simetrisks) {
+            cout << "Nav atrasts neviens simetrisks skaitlis intervālā [" << n << ";" << m << "]" << endl;
+        }
 
-    }while(ievade==1);
+        // Tiek jautāts lietotājam, vai vēlas turpināt programmu.
+        cout << "Ievadi (1), ja vēlies turpināt, ievadi (0), ja vēlies beigt programmu: " << endl;
+        cin >> ievade;
+
+    } while (ievade == 1);
 
     return 0;
 }
