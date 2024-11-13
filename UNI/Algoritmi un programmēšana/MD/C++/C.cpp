@@ -1,48 +1,69 @@
 /********************************************************************************************
-    Izveidot programmu valodā C++, obligāti izmantojot norādītās vai kādas citas funkcijas.
-    Prasības tādas pašas kā iepriekšējā uzdevumā, precīzāk sk. Laboratorijas darbu noteikumos.
+Kristers Laganovskis, kl24033
 
-    C19. Dots masīvs no veseliem nenegatīviem skaitļiem A(n) Atrast tā elementa indeksu, kuram pirms
-    tā esošo skaitļu summa vismazāk atšķiras no pēc tā esošo skaitļu summas.
-    Ja elementi ar šādu īpašību ir vairāki, uzrādīt visus.
+Izveidot programmu valodā C++, obligāti izmantojot norādītās vai kādas citas funkcijas.
+Prasības tādas pašas kā iepriekšējā uzdevumā, precīzāk sk. Laboratorijas darbu noteikumos.
+
+C19. Dots masīvs no veseliem nenegatīviem skaitļiem A(n). Atrast tā elementa indeksu, kuram pirms
+tā esošo skaitļu summa vismazāk atšķiras no pēc tā esošo skaitļu summas.
+Ja elementi ar šādu īpašību ir vairāki, uzrādīt visus.
+
+Programma tika izveidota: 13.11.2024.
 ********************************************************************************************/
 #include <iostream>
 using namespace std;
 
-int main() {
-    int arr[5] = {1, 4, 6, 2, 9};
+/***********************
+int TuvakaisIndekss(int arr[5]);
+Funkcija TuvakaisIndekss(int arr[5]) -
 
-    int total_sum = 0;
+atgriež kā rezultātu tuvāko arr masīva indeksu, kuram pirms
+tā esošo skaitļu summa vismazāk atšķiras no pēc tā esošo skaitļu summas.
 
+***********************/
+
+int TuvakaisIndekss(int arr[5]){
+
+	int total_sum = 0;
+
+	//Tiek iegūts masīva - arr - kopsumma.
     for (int i = 0; i < 5; i++) {
         total_sum += arr[i];
     }
 
-    int left_sum = 0;
-    int min_diff = total_sum;
-    int closest_index = -1;
-    int current_diff;
+    int kreisa_puse = 0;
+    int minimala_starpiba = total_sum;
+    int tuvakais_indekss = -1;
+    int paslaik_starp;
 
+	//Tiek iegūta katra starpība starp indeksa pusēm.
     for (int i = 0; i < 5; i++) {
-        int right_sum = total_sum - left_sum - arr[i];
-        current_diff = left_sum - right_sum;
+        int right_sum = total_sum - kreisa_puse - arr[i]; //Tiek iegūta labās puses kopsumma.
+        paslaik_starp = kreisa_puse - right_sum;
 
-        if (current_diff < 0) {
-            current_diff = -current_diff;
+        //Ja starpība ir ar negatīvu vērtību, tad vērtība tiek pārvērsta par pozitīvu (modulis).
+        if (paslaik_starp < 0) {
+            paslaik_starp = -paslaik_starp;
         }
 
-        if (current_diff < min_diff) {
-            min_diff = current_diff;
-            closest_index = i;
+		//Tiek noteikts tuvākais indekss.
+        if (paslaik_starp < minimala_starpiba) {
+            minimala_starpiba = paslaik_starp;
+            tuvakais_indekss = i;
         }
 
-        left_sum += arr[i];
+        kreisa_puse += arr[i]; //Pieskaita klāt arr[i] pie kreisās puses.
     }
 
-    cout << "Index with closest sums: " << closest_index << endl;
-    cout << "Minimum difference: " << min_diff << endl;
-
-    return 0;
+    return tuvakais_indekss;
 }
 
+int main() {
 
+    int arr[5] = {1, 4, 6, 2, 9};
+    int tuvakais_indekss = TuvakaisIndekss(arr); //Tiek inicializēta funkcija.
+
+    cout<<"Tuvakais indekss: "<<tuvakais_indekss<<endl;
+
+	return 0;
+}
