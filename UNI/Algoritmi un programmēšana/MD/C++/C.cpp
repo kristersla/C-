@@ -6,7 +6,6 @@ Prasības tādas pašas kā iepriekšējā uzdevumā, precīzāk sk. Laboratorij
 
 C19. Dots masīvs no veseliem nenegatīviem skaitļiem A(n). Atrast tā elementa indeksu, kuram pirms
 tā esošo skaitļu summa vismazāk atšķiras no pēc tā esošo skaitļu summas.
-Ja elementi ar šādu īpašību ir vairāki, uzrādīt visus.
 
 Programma tika izveidota: 13.11.2024.
 ********************************************************************************************/
@@ -60,7 +59,7 @@ int TuvakaisIndekss(int arr[5]){
 
 int main() {
 
-    int arr[5] = {1, 4, 6, 2, 9};
+    int arr[5] = {10,20,5,15,30};
     int tuvakais_indekss = TuvakaisIndekss(arr); //Tiek inicializēta funkcija.
 
     cout<<"Tuvakais indekss: "<<tuvakais_indekss<<endl;
