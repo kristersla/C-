@@ -59,7 +59,7 @@ int TuvakaisIndekss(int arr[5]){
 
 int main() {
 
-    int arr[5] = {10,20,5,15,30};
+    int arr[5] = {1,4,6,2,9};
     int tuvakais_indekss = TuvakaisIndekss(arr); //Tiek inicializēta funkcija.
 
     cout<<"Tuvakais indekss: "<<tuvakais_indekss<<endl;
