@@ -1,0 +1,101 @@
+#include <iostream>
+using namespace std;
+
+class Taisnsturis{
+
+	float platums;
+	float augstums;
+
+	public:
+
+		Taisnsturis(float platums, float augstums);
+		~Taisnsturis();
+
+	void setPlatums(float platums);
+	float getPlatums();
+
+	void setAugstums(float augstums);
+	float setAugstums();
+	float getAugstums();
+
+	float laukums();
+	void print();
+
+
+};
+
+int main(){
+
+	Taisnsturis tr1(5,6);
+	tr1.print();
+	cout<<tr1.laukums()<<endl;
+	tr1.setPlatums(2);
+	tr1.setAugstums(0);
+	cout<<tr1.getPlatums()<<' '<<tr1.getAugstums()<<endl;
+
+	Taisnsturis* tr2;
+	tr2 = new Taisnsturis(5,6);
+	tr2->print();
+	cout<<tr2->laukums()<<endl;
+	tr2->setPlatums(2);
+	tr2->setAugstums(0);
+	cout<<tr2->getPlatums()<<' '<<tr2->getAugstums()<<endl;
+	delete tr2;
+
+
+}
+Taisnsturis::Taisnsturis(float platums, float augstums){
+
+	if (platums<=0){
+
+		cout<<"Kļūdaina vērtība. Piešķirta vērtība 17."<<endl;
+		this->platums = 17;
+	}
+	else this->platums=platums;
+
+	if(augstums <=0){
+
+		cout<<"Kļūdaina vērtība. Piešķirta vērtība 17."<<endl;
+		this->augstums = 17;
+	}
+	else this->augstums = augstums;
+	cout<<"Tiek izsaukts konstruktors objektam: "<<this<<endl;
+
+
+}
+Taisnsturis::~Taisnsturis(){
+
+	cout<<"Tiek izsaukts destraktors objektam: "<<this<<endl;
+
+}
+
+void Taisnsturis::setPlatums(float platums){
+
+	if(platums>=0) this->platums = platums;
+
+}
+float Taisnsturis::getPlatums(){
+
+	return platums;
+
+}
+void Taisnsturis::setAugstums(float augstums){
+
+	if(augstums>=0) this->augstums = augstums;
+
+}
+float Taisnsturis::getAugstums(){
+
+	return augstums;
+
+}
+float Taisnsturis::laukums(){
+
+	return platums*augstums;
+
+}
+void Taisnsturis::print(){
+
+	cout<<"Platums: "<<platums<<' '<<augstums<<endl;
+
+}
