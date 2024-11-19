@@ -46,12 +46,15 @@ header {
 /* Navigation Bar */
 nav {
     background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Navigation Bar */
 .nav-bar {
     list-style: none;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     margin: 0;
     padding: 15px 55px;
     background-color: rgb(252, 250, 247);
@@ -64,21 +67,31 @@ nav {
 
 .nav-bar a {
     text-decoration: none;
-    color: #333;
+    color: #000;
     font-weight: bold;
     font-size: 1rem;
     text-transform: uppercase;
+    padding: 15px 15px;
+}
+.sub-menu .sum-menu-item a{
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+}
+.nav-bar .has-sub-menu:hover > a {
+    color: #fff;
+    background-color: #635243;
 }
 
-.nav-bar a:hover {
-    color: green;
-}
+/* 
+.nav-bar .has-sub-menu:hover > a {
+    color: #fff;
+    background-color: #635243;
+} */
 
 .nav-bar .no-sub-menu a {
-    color: green;
-}
-
-.nav-bar .has-sub-menu:hover > a {
     color: green;
 }
 
@@ -89,39 +102,68 @@ nav {
 /* Dropdown Menu */
 .sub-menu {
     display: none;
+    grid-template-columns: repeat(2, 180px);
     position: absolute;
-    top: 100%;
+    top: 34px;
     left: 0;
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 5px;
-    padding: 10px;
+    background-color: #635243;
+    padding: 0px 0px 20px 20px;
     z-index: 100;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 0px;
 }
 
-.has-sub-menu:hover .sub-menu {
-    display: block;
+.has-sub-menu:hover .sub-menu,
+.has-sub-menu:focus-within .sub-menu {
+    display: grid;
+}
+.nav-bar .has-sub-menu.open-left .sub-menu {
+    left: auto; /* Reset left position */
+    right: 0;   /* Align to the right of the parent */
+    transform: translateX(-100%); /* Push it fully to the left side */
 }
 
-.sub-menu .col-1, .sub-menu .col-2 {
+.nav-bar .has-sub-menu.open-left:hover > .sub-menu,
+.nav-bar .has-sub-menu.open-left:focus-within > .sub-menu {
+    display: grid; /* Ensure it displays properly when hovered or focused */
+}
+/* Dropdown Columns */
+.sub-menu .col-1,
+.sub-menu .col-2 {
     width: 200px;
+    padding-bottom: 15px;
 }
 
 .sub-menu .sum-menu-item {
     padding: 5px 0;
-    font-size: 0.9rem;
-    color: #333;
+    font-size: 14px;
+    color: #fff;
 }
 
-.sub-menu .sum-menu-item:hover {
-    color: green;
-}
 
 .sub-menu .sum-menu-list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: -15px;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .nav-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sub-menu {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .sub-menu .col-1,
+    .sub-menu .col-2 {
+        width: auto;
+    }
 }
 
 
@@ -203,7 +245,12 @@ nav {
     width: 100%;
     height: 100%;
 }
-
+@media(max-width: 1176px) {
+    .product-list{
+        display: flex;
+        flex-direction: column;
+    }
+}
 .product-group {
     display: flex;
 }
@@ -228,15 +275,18 @@ nav {
 }
 
 .image-text {
-    position: absolute;
-    bottom: 5px;
-    left: 27%;
-    width: 165px;
-    align-items: end;
+    display: flex;
+    justify-content: end;
+    align-self: flex-end;
+    position: relative;
+    bottom: 30px;
     background-color: rgba(94, 81, 68, 0.6);
     color: #fff;
     font-size: 13px;
     padding: 4px 8px;
+    position: relative;
+    left: 26%;
+    width: 67%;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
@@ -246,6 +296,7 @@ nav {
     font-size: 15px;
     margin: 10px 0 5px;
     color: #333;
+    text-transform: capitalize;
 }
 
 .product-price {
@@ -288,11 +339,36 @@ nav {
 }
 
 #footer{
-    display: flex;
-    height: 70px;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    height: 80px;
+    column-gap: 5px;
+    margin-top: 20px;
+}
+.footer-col{
     background-color: #C0B0A1;
+}
+.footer-col a{
+    font-size: 20px;
+}
+.left-col{
+    display: flex;
+    padding-right: 20px;
+    align-items: center;
+    justify-content: end;
+}
+
+.middle-col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-col{
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    justify-content: start;
 }
 #footer .text-normal{
     text-decoration: none;
