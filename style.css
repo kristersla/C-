@@ -1,14 +1,12 @@
-/* General Reset and Fonts */
+/*Kristers Laganovskis kl24033*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lexend+Exa:wght@700&display=swap');
 
 body {
     margin: 0;
     font-family: 'Lato', Arial, sans-serif;
     background-color: rgb(252, 250, 247);
-    min-width: 1200px;
 }
 
-/* Header and Navbar Styling */
 header {
     background-color: rgb(252, 250, 247);
 }
@@ -23,6 +21,7 @@ header {
 .title {
     font-family: 'Loto', sans-serif;
     font-size: 22px;
+    color: #3a3328;
     font-weight: 550;
     text-transform: uppercase;
     margin: 0;
@@ -42,14 +41,14 @@ header {
     margin-left: 15px;
     cursor: pointer;
 }
-
-/* Navigation Bar */
+.links img:hover {
+    opacity: 0.7;
+}
 nav {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Navigation Bar */
 .nav-bar {
     list-style: none;
     display: flex;
@@ -64,13 +63,15 @@ nav {
     margin: 0 15px;
     position: relative;
 }
-
+.sub-menu .col-1 h3, .sub-menu .col-2 h3{
+    padding-bottom: 10px;
+}
 .nav-bar a {
     text-decoration: none;
-    color: #000;
+    color: #3a3328;
     font-weight: bold;
     font-size: 1rem;
-    text-transform: uppercase;
+    text-transform: capitalize;
     padding: 15px 15px;
 }
 .sub-menu .sum-menu-item a{
@@ -82,14 +83,8 @@ nav {
 }
 .nav-bar .has-sub-menu:hover > a {
     color: #fff;
-    background-color: #635243;
+    background-color: rgb(99, 82, 67);
 }
-
-/* 
-.nav-bar .has-sub-menu:hover > a {
-    color: #fff;
-    background-color: #635243;
-} */
 
 .nav-bar .no-sub-menu a {
     color: green;
@@ -99,14 +94,13 @@ nav {
     color: red;
 }
 
-/* Dropdown Menu */
 .sub-menu {
     display: none;
-    grid-template-columns: repeat(2, 180px);
+    grid-template-columns: repeat(2, 145px);
     position: absolute;
     top: 34px;
     left: 0;
-    background-color: #635243;
+    background-color: rgb(99, 82, 67);
     padding: 0px 0px 20px 20px;
     z-index: 100;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -127,10 +121,9 @@ nav {
 .nav-bar .has-sub-menu.open-left:focus-within > .sub-menu {
     display: grid; /* Ensure it displays properly when hovered or focused */
 }
-/* Dropdown Columns */
-.sub-menu .col-1,
-.sub-menu .col-2 {
-    width: 200px;
+
+.sub-menu .col-1, .sub-menu .col-2 {
+    padding-right: 7px;
     padding-bottom: 15px;
 }
 
@@ -146,8 +139,10 @@ nav {
     padding: 0;
     margin: -15px;
 }
+.sub-menu.open-left {
+    left: -14.8rem;
+}
 
-/* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
     .nav-bar {
         flex-wrap: wrap;
@@ -181,7 +176,7 @@ nav {
     height: 100%;
 }
 .discount-ad{
-    background-color: #C0B0A1;
+    background-color: rgb(192,176,161);
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -193,7 +188,7 @@ nav {
     text-transform: uppercase;
 }
 .red-text{
-    color: #CD1D2E;
+    color: rgb(205, 29, 46);
 }
 .big-text{
     margin: 0;
@@ -202,22 +197,26 @@ nav {
 .buttons{
     margin: 10px 0px 25px 0px;
 }
-.buttons a{
+.discount-ad .buttons a {
     text-decoration: none;
     color: #000;
     border: 1px solid #000;
     border-radius: 15px;
     padding: 6px 16px;
     margin: 0px 5px;
+    transition: box-shadow 0.3s ease;
+    display: inline-block;
 }
-.small-text{
-    font-size: 10px;
+
+.buttons a:hover {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Stronger shadow on hover */
+
 }
 #returns{
-    background-color: #635243;
+    background-color: rgb(99, 82, 67);
     text-align: center;
     border-radius: 15px;
-    height: 200px;
+    height: 180px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -225,9 +224,10 @@ nav {
     margin: 20px 200px;
 }
 #returns p{
-    font-weight: 500px;
+    font-weight: 500;
 }
 #returns .title-text{
+    font-weight: 400 !important;
     margin: 0;
 }
 #returns .white-text{
@@ -257,15 +257,17 @@ nav {
 
 .product-card {
     background-color: #fff;
-    overflow: hidden;
-    transition: box-shadow 0.3s;
+    width: 100%;
+    height: 100%;
 }
 
 .product-image {
     position: relative;
     width: 100%;
-    height: 370px;
-    overflow: hidden;
+    height: 85%;
+    display: flex;
+    align-items: end;
+    justify-content: flex-end;
 }
 
 .product-image img {
@@ -275,19 +277,16 @@ nav {
 }
 
 .image-text {
-    display: flex;
-    justify-content: end;
-    align-self: flex-end;
-    position: relative;
-    bottom: 30px;
-    background-color: rgba(94, 81, 68, 0.6);
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+    text-align: end;
+    width: auto;
     color: #fff;
     font-size: 13px;
     padding: 4px 8px;
-    position: relative;
-    left: 26%;
-    width: 67%;
     border-radius: 10px;
+    background-color: rgba(99, 82, 67, 0.7);;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
@@ -306,9 +305,8 @@ nav {
     margin-bottom: 10px;
 }
 
-/* Sale Section */
 #sale {
-    background-color: #CD1D2E;
+    background-color: rgb(205, 29, 46);
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
@@ -321,21 +319,23 @@ nav {
     display: inline-block;
     text-decoration: none;
     color: #fff;
-    border: 1px solid #fff;
-    background-color: #CD1D2E;
+    border: 1px solid rgb(192,176,161);
+    background-color: rgb(205, 29, 46);
     padding: 10px 20px;
     margin: 0 10px;
     border-radius: 20px;
     font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
 }
+.sale-card .buttons a:hover {
+    border: 1px solid #fff;
+}
 .sale-card .white-text{
     color: #fff;
 }
-.sale-card .small-text {
-    font-size: 12px;
+.small-text {
+    font-size: 11px;
     margin-top: 10px;
-    color: #ffcccc;
 }
 
 #footer{
@@ -346,7 +346,7 @@ nav {
     margin-top: 20px;
 }
 .footer-col{
-    background-color: #C0B0A1;
+    background-color: rgb(192,176,161);
 }
 .footer-col a{
     font-size: 20px;
@@ -374,7 +374,4 @@ nav {
     text-decoration: none;
     color: #000;
     font-size: 20px;
-}
-.footer-col{
-
 }
