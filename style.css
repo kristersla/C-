@@ -1,0 +1,304 @@
+/* General Reset and Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lexend+Exa:wght@700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Lato', Arial, sans-serif;
+    background-color: rgb(252, 250, 247);
+    min-width: 1200px;
+}
+
+/* Header and Navbar Styling */
+header {
+    background-color: rgb(252, 250, 247);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.title {
+    font-family: 'Loto', sans-serif;
+    font-size: 22px;
+    font-weight: 550;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.search-box input {
+    padding: 7px 10px;
+    border: 1px solid #000;
+    border-radius: 15px;
+    background-color: #fff;
+    width: 570px;
+    font-size: 12px;
+}
+
+.links img {
+    width: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #fff;
+}
+
+.nav-bar {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 15px 55px;
+    background-color: rgb(252, 250, 247);
+}
+
+.nav-bar li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.nav-bar a:hover {
+    color: green;
+}
+
+.nav-bar .no-sub-menu a {
+    color: green;
+}
+
+.nav-bar .has-sub-menu:hover > a {
+    color: green;
+}
+
+.nav-bar .no-sub-menu:last-child a {
+    color: red;
+}
+
+/* Dropdown Menu */
+.sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.has-sub-menu:hover .sub-menu {
+    display: block;
+}
+
+.sub-menu .col-1, .sub-menu .col-2 {
+    width: 200px;
+}
+
+.sub-menu .sum-menu-item {
+    padding: 5px 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.sub-menu .sum-menu-item:hover {
+    color: green;
+}
+
+.sub-menu .sum-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+#discounts{
+    display: flex;
+    width: 100%;
+}
+.section-col{
+    width: 50%;
+}
+
+.section-col img{
+    width: 100%;
+    height: 100%;
+}
+.discount-ad{
+    background-color: #C0B0A1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.title-text{
+    font-family: 'Lexend Exa', sans-serif;
+    text-transform: uppercase;
+}
+.red-text{
+    color: #CD1D2E;
+}
+.big-text{
+    margin: 0;
+    font-size: 40px;
+}
+.buttons{
+    margin: 10px 0px 25px 0px;
+}
+.buttons a{
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 15px;
+    padding: 6px 16px;
+    margin: 0px 5px;
+}
+.small-text{
+    font-size: 10px;
+}
+#returns{
+    background-color: #635243;
+    text-align: center;
+    border-radius: 15px;
+    height: 200px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 200px;
+}
+#returns p{
+    font-weight: 500px;
+}
+#returns .title-text{
+    margin: 0;
+}
+#returns .white-text{
+    color: #fff;
+    width: 480px;
+}
+
+#products {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.product-list {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.product-group {
+    display: flex;
+}
+
+.product-card {
+    background-color: #fff;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+.product-image {
+    position: relative;
+    width: 100%;
+    height: 370px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-text {
+    position: absolute;
+    bottom: 5px;
+    left: 27%;
+    width: 165px;
+    align-items: end;
+    background-color: rgba(94, 81, 68, 0.6);
+    color: #fff;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+
+.product-title {
+    font-size: 15px;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.product-price {
+    font-size: 0.9rem;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Sale Section */
+#sale {
+    background-color: #CD1D2E;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.sale-card .buttons a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: #CD1D2E;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+.sale-card .white-text{
+    color: #fff;
+}
+.sale-card .small-text {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #ffcccc;
+}
+
+#footer{
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    background-color: #C0B0A1;
+}
+#footer .text-normal{
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+}
+.footer-col{
+
+}
