@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1733406237 source:c:\users\burka\onedrive\desktop\d\main.cpp
+	<iostream>
+	"program.h"
+
+1733406478 c:\users\burka\onedrive\desktop\d\program.h
+
+1733405811 source:c:\users\burka\onedrive\desktop\d\program.cpp
+	<iostream>
+	"program.h"
+
