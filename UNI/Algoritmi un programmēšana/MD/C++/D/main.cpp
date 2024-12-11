@@ -17,7 +17,6 @@ vai steks ir pilns. Pirms uzdevuma veikšanas precīzi noskaidrot, ko nozīmē j
 Programma izveidota: 12.5.2024.
 *******************************************/
 
-
 #include <iostream>
 #include "program.h"
 using namespace std;
@@ -36,20 +35,28 @@ int main()
     steks.Push('e');
 
     //Tiek pievienots sesais simbols, kas ir lieks. Lai demonstrētu, kas notiek, kad tiek pievienoti par daudz simbolu stakam.
-    steks.Push('f');
+    steks.Push('f'); //Steks ir pilns! Nevar pievienot simbolu: f
 
-    cout<<"Elementu skaits stekā: "<<steks.Count()<<endl;
+    cout<<"Elementu skaits steka: "<<steks.Count()<<endl; //Elementru skaits steka: 5
 
-    cout<<"Augšējais elements: "<<steks.Top()<<endl;
+    cout<<"Augsejais elements: "<<steks.Top()<<endl; //Augsejais elements e
 
     while (!steks.IsEmpty()){
 
-           cout<<"Izņemts elements: "<<steks.Pop()<<endl;
+           cout<<"Iznemts elements: "<<steks.Pop()<<endl;
+
+           /*****
+			Iznemts elements: e
+			Iznemts elements: d
+			Iznemts elements: c
+			Iznemts elements: b
+			Iznemts elements:
+           *****/
 
            }
 
     //Tiek demonstrēts, kas notiek, ja tiek izņemts simbols, kad stakā vairs nav neviena simbola.
-    steks.Pop();
+    steks.Pop(); //Steks ir tukss! Nevar iznemt simbolu.
 
 
     return 0;
