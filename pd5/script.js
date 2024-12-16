@@ -25,14 +25,17 @@ document.addEventListener("DOMContentLoaded", () => {
         img.alt = imageData.name;
 
         const imageInfo = document.createElement('p');
-        imageInfo.textContent = `${imageData.name} - ${imageData.category} - Added: ${imageData.date}`;
+		const imageInfo2 = document.createElement('p');
+        imageInfo.textContent = `Bilde: ${imageData.name}, no ketrgorijas ${imageData.category}.`;
+		imageInfo2.textContent =  `Tika pievienota: ${imageData.date}`;
 
         const removeButton = document.createElement('button');
-        removeButton.textContent = 'Remove';
+        removeButton.textContent = 'Dzēst';
         removeButton.addEventListener('click', () => removeImage(imageData));
 
         imageItem.appendChild(img);
         imageItem.appendChild(imageInfo);
+		imageItem.appendChild(imageInfo2);
         imageItem.appendChild(removeButton);
 
         return imageItem;
@@ -90,9 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         images.push(imageData);
-
         renderGallery();
-
         imageForm.reset();
     });
 
