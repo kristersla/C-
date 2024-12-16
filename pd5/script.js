@@ -1,104 +1,141 @@
-// execute the script when the HTML document has been completely parsed
-document.addEventListener("DOMContentLoaded", (event) => {
-	// Select DOM elements
-	const gallery = document.getElementById('gallery');
-	const allFilter = document.getElementById('allFilter');
-	const natureFilter = document.getElementById('natureFilter');
-	const cityFilter = document.getElementById('cityFilter');
-	const abstractFilter = document.getElementById('abstractFilter');
-	const sortBy = document.getElementById('sortBy');
-	const imageForm = document.getElementById('imageForm');
-	const imageUrlInput = document.getElementById('imageUrl');
-	const imageNameInput = document.getElementById('imageName');
-	const imageCategoryInput = document.getElementById('imageCategory');
-	const urlError = document.getElementById('urlError');
-	const nameError = document.getElementById('nameError');
-	const categoryError = document.getElementById('categoryError');
+document.addEventListener("DOMContentLoaded", () => {
 
-	let images = [];  // Array to store image data
+    const gallery = document.getElementById('gallery');
+    const allFilter = document.getElementById('allFilter');
+    const natureFilter = document.getElementById('natureFilter');
+    const cityFilter = document.getElementById('cityFilter');
+    const abstractFilter = document.getElementById('abstractFilter');
+    const sortBy = document.getElementById('sortBy');
+    const imageForm = document.getElementById('imageForm');
+    const imageUrlInput = document.getElementById('imageUrl');
+    const imageNameInput = document.getElementById('imageName');
+    const imageCategoryInput = document.getElementById('imageCategory');
+    const urlError = document.getElementById('urlError');
+    const nameError = document.getElementById('nameError');
+    const categoryError = document.getElementById('categoryError');
 
-	// Function to create image element, supplement the code to set the necessary attributes of the image card in the gallery
-	function createImageElement(imageData) {
-		const imageItem = document.createElement('div');
-		
-		const img = document.createElement('img'); 
-		
-		imageItem.appendChild(img);
-		
-		const removeButton = document.createElement('button');
+    let images = [];
 
-		removeButton.addEventListener('click', () => removeImage(imageData));
-		imageItem.appendChild(removeButton);
+    function createImageElement(imageData) {
+        const imageItem = document.createElement('div');
+        imageItem.classList.add('image-item');
 
-		const imageInfo = document.createElement('p');
+        const img = document.createElement('img');
+        img.src = imageData.url;
+        img.alt = imageData.name;
 
-		imageItem.appendChild(imageInfo);
-		
-		return imageItem;
-	}
+        const imageInfo = document.createElement('p');
+        imageInfo.textContent = `${imageData.name} - ${imageData.category} - Added: ${imageData.date}`;
 
-	// Function to render images to the gallery
-	function renderGallery(filter) {
-		gallery.innerHTML = ''; // clean the gallery
-		// filter the images according to the filter parameter, run the function createImageElement for each image and append generated images to the gallery
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', () => removeImage(imageData));
 
-	}
+        imageItem.appendChild(img);
+        imageItem.appendChild(imageInfo);
+        imageItem.appendChild(removeButton);
 
-	// Function to validate the form
-	function validateForm() {
-		let valid = true;
+        return imageItem;
+    }
 
-		// Clear previous error messages
-		urlError.textContent = '';
-		nameError.textContent = '';
-		categoryError.textContent = '';
+    function renderGallery(filter = 'All') {
+        gallery.innerHTML = '';
 
-		// Validate Image URL (must end with .jpg, .png, .gif, or .svg), in case on error, display error message in urlError
+        const filteredImages = filter === 'All' ? images : images.filter(image => image.category === filter);
 
+        filteredImages.forEach(image => {
+            const imageElement = createImageElement(image);
+            gallery.appendChild(imageElement);
+        });
+    }
 
-		// Validate Image Name (cannot be empty), in case on error, display error message in nameError
+    function validateForm() {
+        let valid = true;
 
+        urlError.textContent = '';
+        nameError.textContent = '';
+        categoryError.textContent = '';
 
-		// Validate Category (must be selected), in case on error, display error message in categoryError
+        const urlValue = imageUrlInput.value.trim();
+        if (!urlValue.match(/\.(jpg|png|gif|svg)$/i)) {
+            urlError.textContent = 'Invalid image URL. Must end with .jpg, .png, .gif, or .svg.';
+            valid = false;
+        }
 
+        const nameValue = imageNameInput.value.trim();
+        if (!nameValue) {
+            nameError.textContent = 'Image name cannot be empty.';
+            valid = false;
+        }
 
-		return valid;
-	}
+        const categoryValue = imageCategoryInput.value;
+        if (!categoryValue) {
+            categoryError.textContent = 'Please select a category.';
+            valid = false;
+        }
 
-	// Function to add an image
-	imageForm.addEventListener('submit', function (e) {
-		e.preventDefault(); // cancel form submission
-		
-		// Validate the fields with the function validateForm(), stop processing if validation fails
+        return valid;
+    }
 
-		// Create image data object
+    imageForm.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-		// Add the image data to the array images
-		
-		// Render the updated gallery
+        if (!validateForm()) return;
 
-		// Reset the form
-	});
+        const imageData = {
+            url: imageUrlInput.value.trim(),
+            name: imageNameInput.value.trim(),
+            category: imageCategoryInput.value,
+            date: new Date().toLocaleString()
+        };
 
-	// Function to remove an image from the array images and from the gallery HTML
-	function removeImage(imageData) {
+        images.push(imageData);
 
-	}
+        renderGallery();
 
-	// Filter buttons
-	allFilter.addEventListener('click', () => {
-		renderGallery('All');
-	});
+        imageForm.reset();
+    });
 
-	// Add event listeners to other buttons
-	
-	// Sorting functionality
-	sortBy.addEventListener('change', () => {
-		// Get selected option from the drop-down list sortBy
-		
-		// Sort the array images according to the selected option
+    function removeImage(imageData) {
+        images = images.filter(image => image !== imageData);
+        renderGallery();
+    }
 
-		// Render the gallery
-	});
+    allFilter.addEventListener('click', () => renderGallery('All'));
+    natureFilter.addEventListener('click', () => renderGallery('Nature'));
+    cityFilter.addEventListener('click', () => renderGallery('City'));
+    abstractFilter.addEventListener('click', () => renderGallery('Abstract'));
 
+    sortBy.addEventListener('change', () => {
+        const sortValue = sortBy.value;
+
+        if (sortValue === 'nameAsc') {
+            images.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortValue === 'nameDesc') {
+            images.sort((a, b) => b.name.localeCompare(a.name));
+        } else if (sortValue === 'dateAsc') {
+            images.sort((a, b) => new Date(a.date) - new Date(b.date));
+        } else if (sortValue === 'dateDesc') {
+            images.sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+
+        renderGallery();
+    });
 });
+
+
+// let images = []; // stores: url, name, category, date
+
+
+// function createImageElement(imageData) //Uztaisa div container ar bildi, description un remove button.
+
+
+// function renderGallery(filter = 'All') //parada jaunu izfiltreto array ar bildem
+
+
+// function validateForm() //parbauda for errors vai ir jpg, png, gif, utt.
+
+
+// imageForm.addEventListener('submit', function (e) // izveido objektu ar pieprasito form, adds the image to the array, izsauc renderGallary()
+
+
