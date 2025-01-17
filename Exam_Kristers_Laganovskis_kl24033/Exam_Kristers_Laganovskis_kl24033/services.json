@@ -1,0 +1,28 @@
+{
+    "services": [
+        { 
+            "name": "Vietnes izstrāde",
+            "price": 799 
+        },
+        { 
+            "name": "Vietnes dizains",
+            "price": 340
+        },
+        {
+            "name": "SEO optimizācija",
+            "price": 120
+        },
+        { 
+            "name": "Vietnes optimizācija", 
+            "price": 100 
+        },
+        { 
+            "name": "Vietnes hostings", 
+            "price": 45 
+        },
+        { 
+            "name": "Uzturēšana un atbalsts", 
+            "price": 250
+        }
+    ]
+}
