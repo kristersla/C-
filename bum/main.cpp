@@ -21,7 +21,7 @@ atgriež kā rezultātu attīrītu vārdu no simboliem atstājot tikai burtus un
 void attria(char* word) {
     int j = 0;
     for (int i = 0; word[i] != '\0'; i++) {
-        if (isalnum(word[i])) {
+        if (isalnum(word[i])) { //Tiek attīrīts vārds no simboliem un tiek atstāti tikai burti un cipri.
             word[j++] = word[i];
         }
     }
@@ -41,7 +41,7 @@ bool palindroms(const char* word) {
     int right = strlen(word) - 1;
 
 	while (left < right) {
-        if (word[left] != word[right]) {
+        if (word[left] != word[right]) { //Ja burti nesakrīt, tad tas nav palindroms.
             return false;
         }
         left++;
