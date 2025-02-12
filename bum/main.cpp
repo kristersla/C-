@@ -11,8 +11,14 @@ Simetrisks ir vārds, kas no abām pusēm lasāms vienādi (aka, 1221). Drīkst 
 
 using namespace std;
 
+/***********************
+void attira(char* word);
+Funkcija attira(char* word) -
 
-void cleanWord(char* word) {
+atgriež kā rezultātu attīrītu vārdu no simboliem atstājot tikai burtus un ciparus.
+
+***********************/
+void attria(char* word) {
     int j = 0;
     for (int i = 0; word[i] != '\0'; i++) {
         if (isalnum(word[i])) {
@@ -22,6 +28,13 @@ void cleanWord(char* word) {
     word[j] = '\0';
 }
 
+/***********************
+bool palindroms(const char* word);
+Funkcija palindroms(const char* word) -
+
+atgriež kā rezultātu true vai false vai padotais vārds ir palindroms.
+
+***********************/
 bool palindroms(const char* word) {
 
 	int left = 0;
@@ -42,15 +55,15 @@ int main() {
     ofstream out("out9.txt");
     char word[50];
 
-    if (!in || !out) {
-        cout << "Error opening input or output file!" << endl;
+    if (!in || !out) { //Parbauda vai eksistē ievades un izvaides 'txt' faili.
+        cout << "Nav atrasts in9.txt vai out9.txt fails." << endl;
         return 1;
     }
 
-    while (in >> word) {
-        cleanWord(word);
+    while (in >> word) { //Katrs vards kamer ir vards iekš faila.
+        attria(word);
         if (strlen(word) > 0 && palindroms(word)) {
-            out << word << endl;
+            out << word << endl; //Tiek ierakstīts iegūtais palindroms izejas failā.
         }
     }
 
