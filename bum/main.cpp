@@ -11,26 +11,30 @@ Simetrisks ir vārds, kas no abām pusēm lasāms vienādi (aka, 1221). Drīkst 
 
 using namespace std;
 
-// Funkcija, kas pārbauda, vai vārds ir palindroms
-
-bool isPalindrome(const char* word) {
-    int len = strlen(word);
-    for (int i = 0; i < len / 2; i++) {
-        if (word[i] != word[len - 1 - i]) return false;
-    }
-    return true;
-}
-
-// Funkcija, kas izfiltrē pieturas zīmes no vārda
 
 void cleanWord(char* word) {
     int j = 0;
     for (int i = 0; word[i] != '\0'; i++) {
-        if (isalnum(word[i])) {  // Patur tikai burtus un ciparus
+        if (isalnum(word[i])) {
             word[j++] = word[i];
         }
     }
-    word[j] = '\0'; // Beigas simbols
+    word[j] = '\0';
+}
+
+bool palindroms(const char* word) {
+
+	int left = 0;
+    int right = strlen(word) - 1;
+
+	while (left < right) {
+        if (word[left] != word[right]) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
 }
 
 int main() {
@@ -44,12 +48,11 @@ int main() {
     }
 
     while (in >> word) {
-        cleanWord(word);  // Noņem pieturas zīmes
-        if (strlen(word) > 0 && isPalindrome(word)) {
+        cleanWord(word);
+        if (strlen(word) > 0 && palindroms(word)) {
             out << word << endl;
         }
     }
 
-    cout << "Done!" << endl;
     return 0;
 }
